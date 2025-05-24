@@ -1,0 +1,19 @@
+services:
+  postgres:
+    image: postgres:16
+    container_name: big_data_postgres
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: bd_db
+    ports:
+      - "5433:5432"
+    volumes:
+      - ./sql-scripts:/docker-entrypoint-initdb.d
+      - postgres_data:/var/lib/postgresql/data
+      - ./mock_data/:/mock_data/
+
+
+volumes:
+  postgres_data:
+
